@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreatePage extends StatefulWidget {
+  final FirebaseUser user;
+  CreatePage(this.user);
   @override
   _CreatePageState createState() => _CreatePageState();
 }
@@ -31,7 +34,7 @@ class _CreatePageState extends State<CreatePage> {
         IconButton(
           icon: Icon(Icons.send), onPressed: () {
 
-        },
+          }
         )
       ]
     );
