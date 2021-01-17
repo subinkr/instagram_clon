@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:instagram_clon/login_page.dart';
+import 'package:instagram_clon/root_page.dart';
 
 class AccountPage extends StatefulWidget {
   final User user;
@@ -39,6 +41,10 @@ class _AccountPageState extends State<AccountPage> {
           icon: Icon(Icons.exit_to_app),
           onPressed: () {
             FirebaseAuth.instance.signOut();
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => RootPage())
+            );
           },
         )
       ]

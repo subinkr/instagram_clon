@@ -9,7 +9,7 @@ instagram clone project
 - [Git](https://subin.kr/5)
 - [Java](https://www.java.com/ko/download/)
 
-## recommend site
+## Recommend Site
 
-- [firebase migration guide](https://firebase.flutter.dev/docs/migration/)
-- [fix Firebase.initializeApp() error](https://stackoverflow.com/questions/63492211/no-firebase-app-default-has-been-created-call-firebase-initializeapp-in)
+- [Firebase Migration Guide](https://firebase.flutter.dev/docs/migration/)
+- [Call Firebase.initializeApp()](https://subin.kr/23)
