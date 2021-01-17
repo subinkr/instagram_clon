@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreatePage extends StatefulWidget {
-  final FirebaseUser user;
+  final User user;
   CreatePage(this.user);
   @override
   _CreatePageState createState() => _CreatePageState();
@@ -41,18 +41,18 @@ class _CreatePageState extends State<CreatePage> {
                 .child('${DateTime.now().millisecondsSinceEpoch}.png');
 
             final task = firebaseStorageRef.putFile(
-              _image, StorageMetadata(contentType:'image/png'));
-            task.onComplete.then((value) {
+              _image, SettableMetadata(contentType:'image/png')); //StorageMetadata
+            task.then((value) { // task.onComplete.then((value) {
               var downloadUrl = value.ref.getDownloadURL();
               downloadUrl.then((uri) {
-                var doc = Firestore.instance.collection('post').document();
-                doc.setData({
-                  'id': doc.documentID,
+                var doc = FirebaseFirestore.instance.collection('post').doc();
+                doc.set({
+                  'id': doc.id,
                   'photoUrl': uri.toString(),
                   'contents': textEditingContoller.text,
                   'email': widget.user.email,
                   'displayName': widget.user.displayName,
-                  'userPhotoUrl': widget.user.photoUrl
+                  'userPhotoUrl': widget.user.photoURL
                 }).then((onValue) {
                   Navigator.pop(context);
                 });

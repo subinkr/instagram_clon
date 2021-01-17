@@ -5,7 +5,7 @@ import 'package:instagram_clon/create_page.dart';
 import 'package:instagram_clon/detail_post_page.dart';
 
 class SearchPage extends StatefulWidget {
-  final FirebaseUser user;
+  final User user;
   SearchPage(this.user);
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -25,12 +25,12 @@ class _SearchPageState extends State<SearchPage> {
 
   _buildBody() {
     return StreamBuilder(
-      stream: Firestore.instance.collection('post').snapshots(),
+      stream: FirebaseFirestore.instance.collection('post').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if(!snapshot.hasData) {
           return Center(child: CircularProgressIndicator(),);
         }
-        var items = snapshot.data?.documents ?? [];
+        var items = snapshot.data?.docs ?? [];
 
         return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

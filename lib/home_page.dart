@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final FirebaseUser user;
+  final User user;
   HomePage(this.user);
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                           width: 80,
                           height: 80,
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(user.photoUrl),
+                            backgroundImage: NetworkImage(user.photoURL),
                           ),
                         ),
                         Padding(padding: EdgeInsets.all(8)),

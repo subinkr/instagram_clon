@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AccountPage extends StatefulWidget {
-  final FirebaseUser user;
+  final User user;
   AccountPage(this.user);
   @override
   _AccountPageState createState() => _AccountPageState();
@@ -16,11 +16,11 @@ class _AccountPageState extends State<AccountPage> {
   @override
   void initState() {
     super.initState();
-    Firestore.instance.collection('post').where('email', isEqualTo: widget.user.email)
-    .getDocuments()
+    FirebaseFirestore.instance.collection('post').where('email', isEqualTo: widget.user.email)
+    .get()
     .then((snapShot) {
       setState(() {
-        _postCount = snapShot.documents.length;
+        _postCount = snapShot.docs.length;
       });
     });
   }
@@ -60,7 +60,7 @@ class _AccountPageState extends State<AccountPage> {
                     width: 80,
                     height: 80,
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(widget.user.photoUrl),
+                      backgroundImage: NetworkImage(widget.user.photoURL),
                     ),
                   ),
                   Container(

@@ -27,11 +27,11 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-  Future<FirebaseUser> _handleSignIn() async {
+  Future<User> _handleSignIn() async {
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    FirebaseUser user = (await _auth.signInWithCredential(
-      GoogleAuthProvider.getCredential(idToken: googleAuth.idToken, accessToken: googleAuth.accessToken)
+    User user = (await _auth.signInWithCredential(
+      GoogleAuthProvider.credential(idToken: googleAuth.idToken, accessToken: googleAuth.accessToken)
     )).user;
     return user;
   }
